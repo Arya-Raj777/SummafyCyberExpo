@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Summafy</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fsummafy4779back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
+  <script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-surface text-text-primary">
+    <!-- Navigation Header -->
+    <nav class="bg-white border-b border-secondary-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg class="w-8 h-8 text-primary mr-3" viewBox="0 0 32 32" fill="currentColor">
+                        <path d="M16 2L4 8v16l12 6 12-6V8L16 2zm0 4l8 4v12l-8 4-8-4V10l8-4z"/>
+                        <circle cx="16" cy="16" r="4"/>
+                    </svg>
+                    <span class="text-2xl font-bold text-text-primary">Summafy</span>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.html" class="text-primary font-medium">Dashboard</a>
+                    <a href="summary_history.html" class="text-text-secondary hover:text-primary transition-colors duration-200">History</a>
+                    <a href="account_settings.html" class="text-text-secondary hover:text-primary transition-colors duration-200">Settings</a>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                            <span class="text-primary font-medium text-sm">JD</span>
+                        </div>
+                        <span class="text-text-primary font-medium">John Doe</span>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-text-secondary hover:text-primary p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="dashboard.html" class="text-primary font-medium">Dashboard</a>
+                    <a href="summary_history.html" class="text-text-secondary hover:text-primary transition-colors duration-200">History</a>
+                    <a href="account_settings.html" class="text-text-secondary hover:text-primary transition-colors duration-200">Settings</a>
+                    <div class="flex items-center space-x-3 pt-2 border-t border-secondary-200">
+                        <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                            <span class="text-primary font-medium text-sm">JD</span>
+                        </div>
+                        <span class="text-text-primary font-medium">John Doe</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid lg:grid-cols-4 gap-8">
+            <!-- Main Summarization Area -->
+            <div class="lg:col-span-3">
+                <!-- Welcome Section -->
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-text-primary mb-2">Welcome back, John!</h1>
+                    <p class="text-text-secondary">Transform any content into intelligent summaries with AI</p>
+                </div>
+
+                <!-- Input Section -->
+                <div class="card p-6 mb-8">
+                    <h2 class="text-xl font-semibold text-text-primary mb-6">Create New Summary</h2>
+                    
+                    <!-- Content Type Tabs -->
+                    <div class="mb-6">
+                        <div class="flex space-x-1 bg-secondary-100 p-1 rounded-lg">
+                            <button id="tab-youtube" class="tab-button active flex-1 py-2 px-4 text-sm font-medium rounded-md transition-all duration-200">
+                                <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                                YouTube
+                            </button>
+                            <button id="tab-text" class="tab-button flex-1 py-2 px-4 text-sm font-medium rounded-md transition-all duration-200">
+                                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                Text
+                            </button>
+                            <button id="tab-url" class="tab-button flex-1 py-2 px-4 text-sm font-medium rounded-md transition-all duration-200">
+                                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                                </svg>
+                                Web URL
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content">
+                        <!-- YouTube Tab -->
+                        <div id="content-youtube" class="tab-panel">
+                            <div class="mb-4">
+                                <label for="youtube-url" class="block text-sm font-medium text-text-primary mb-2">
+                                    YouTube Video URL
+                                </label>
+                                <input type="url" 
+                                       id="youtube-url" 
+                                       class="input-field" 
+                                       placeholder="https://www.youtube.com/watch?v=..."
+                                       aria-describedby="youtube-help">
+                                <p id="youtube-help" class="text-sm text-text-secondary mt-1">
+                                    Paste any YouTube video URL to generate a summary of its content
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Text Tab -->
+                        <div id="content-text" class="tab-panel hidden">
+                            <div class="mb-4">
+                                <label for="text-content" class="block text-sm font-medium text-text-primary mb-2">
+                                    Text Content
+                                </label>
+                                <textarea id="text-content" 
+                                          rows="6" 
+                                          class="input-field resize-none" 
+                                          placeholder="Paste your text content here..."
+                                          aria-describedby="text-help"></textarea>
+                                <p id="text-help" class="text-sm text-text-secondary mt-1">
+                                    Paste any text content you'd like to summarize (articles, documents, etc.)
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- URL Tab -->
+                        <div id="content-url" class="tab-panel hidden">
+                            <div class="mb-4">
+                                <label for="web-url" class="block text-sm font-medium text-text-primary mb-2">
+                                    Web Page URL
+                                </label>
+                                <input type="url" 
+                                       id="web-url" 
+                                       class="input-field" 
+                                       placeholder="https://example.com/article"
+                                       aria-describedby="url-help">
+                                <p id="url-help" class="text-sm text-text-secondary mt-1">
+                                    Enter any web page URL to extract and summarize its content
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Preferences -->
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="summary-format" class="block text-sm font-medium text-text-primary mb-2">
+                                Summary Format
+                            </label>
+                            <select id="summary-format" class="input-field">
+                                <option value="bullets">Bullet Points</option>
+                                <option value="paragraph">Paragraph</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="summary-length" class="block text-sm font-medium text-text-primary mb-2">
+                                Summary Length
+                            </label>
+                            <select id="summary-length" class="input-field">
+                                <option value="short">Short</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="long">Long</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Generate Button -->
+                    <button id="generate-btn" class="btn-primary w-full py-3 text-lg font-medium">
+                        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        Generate Summary
+                    </button>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loading-state" class="card p-8 text-center hidden">
+                    <div class="inline-flex items-center">
+                        <svg class="animate-spin -ml-1 mr-3 h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span class="text-lg text-text-primary">Generating your summary...</span>
+                    </div>
+                    <p class="text-text-secondary mt-2">This may take a few moments</p>
+                </div>
+
+                <!-- Results Section -->
+                <div id="results-section" class="card p-6 hidden">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-text-primary">Generated Summary</h3>
+                        <div class="flex gap-2">
+                            <button id="copy-btn" class="btn-secondary text-sm px-4 py-2">
+                                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                                Copy
+                            </button>
+                            <button id="download-btn" class="btn-secondary text-sm px-4 py-2">
+                                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                PDF
+                            </button>
+                        </div>
+                    </div>
+                    <div id="summary-content" class="bg-secondary-50 rounded-lg p-6 text-text-primary">
+                        <!-- Summary content will be inserted here -->
+                    </div>
+                    <div class="mt-4 text-sm text-text-secondary">
+                        <span id="summary-timestamp">Generated on November 1, 2025 at 4:23 PM</span>
+                    </div>
+                </div>
+
+                <!-- Error State -->
+                <div id="error-state" class="card p-6 border-error-500 bg-error-50 hidden">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-error-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <div>
+                            <h3 class="text-lg font-medium text-error-600">Summary Generation Failed</h3>
+                            <p id="error-message" class="text-error-500 mt-1">Please check your input and try again.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar - Recent Summaries -->
+            <div class="lg:col-span-1">
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-text-primary">Recent Summaries</h3>
+                        <a href="summary_history.html" class="text-primary text-sm hover:text-primary-700 transition-colors duration-200">
+                            View All
+                        </a>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <!-- Recent Summary 1 -->
+                        <div class="border border-secondary-200 rounded-lg p-4 hover:bg-secondary-50 transition-colors duration-200">
+                            <div class="flex items-start justify-between mb-2">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 text-error-500 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    </svg>
+                                    <span class="text-xs text-text-secondary">YouTube</span>
+                                </div>
+                                <span class="text-xs text-text-secondary">2 hours ago</span>
+                            </div>
+                            <h4 class="text-sm font-medium text-text-primary mb-1">AI in Healthcare 2025</h4>
+                            <p class="text-xs text-text-secondary line-clamp-2">Summary of latest developments in artificial intelligence applications...</p>
+                        </div>
+
+                        <!-- Recent Summary 2 -->
+                        <div class="border border-secondary-200 rounded-lg p-4 hover:bg-secondary-50 transition-colors duration-200">
+                            <div class="flex items-start justify-between mb-2">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                                    </svg>
+                                    <span class="text-xs text-text-secondary">Article</span>
+                                </div>
+                                <span class="text-xs text-text-secondary">1 day ago</span>
+                            </div>
+                            <h4 class="text-sm font-medium text-text-primary mb-1">Climate Change Report</h4>
+                            <p class="text-xs text-text-secondary line-clamp-2">Key findings from the latest IPCC climate assessment report...</p>
+                        </div>
+
+                        <!-- Recent Summary 3 -->
+                        <div class="border border-secondary-200 rounded-lg p-4 hover:bg-secondary-50 transition-colors duration-200">
+                            <div class="flex items-start justify-between mb-2">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                    <span class="text-xs text-text-secondary">Text</span>
+                                </div>
+                                <span class="text-xs text-text-secondary">2 days ago</span>
+                            </div>
+                            <h4 class="text-sm font-medium text-text-primary mb-1">Research Paper Draft</h4>
+                            <p class="text-xs text-text-secondary line-clamp-2">Summary of machine learning research methodology and findings...</p>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="mt-6 pt-4 border-t border-secondary-200">
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div>
+                                <div class="text-2xl font-bold text-primary">47</div>
+                                <div class="text-xs text-text-secondary">Total Summaries</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-accent">12</div>
+                                <div class="text-xs text-text-secondary">This Week</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.id.replace('tab-', '');
+                
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-white', 'text-primary', 'shadow-subtle');
+                    btn.classList.add('text-text-secondary', 'hover:text-text-primary');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active', 'bg-white', 'text-primary', 'shadow-subtle');
+                button.classList.remove('text-text-secondary', 'hover:text-text-primary');
+                
+                // Hide all panels
+                tabPanels.forEach(panel => {
+                    panel.classList.add('hidden');
+                });
+                
+                // Show selected panel
+                document.getElementById(`content-${tabId}`).classList.remove('hidden');
+            });
+        });
+
+        // Initialize first tab as active
+        document.getElementById('tab-youtube').classList.add('bg-white', 'text-primary', 'shadow-subtle');
+        document.getElementById('tab-youtube').classList.remove('text-text-secondary');
+
+        // Summary generation functionality
+        const generateBtn = document.getElementById('generate-btn');
+        const loadingState = document.getElementById('loading-state');
+        const resultsSection = document.getElementById('results-section');
+        const errorState = document.getElementById('error-state');
+        const summaryContent = document.getElementById('summary-content');
+        const summaryTimestamp = document.getElementById('summary-timestamp');
+        const copyBtn = document.getElementById('copy-btn');
+        const downloadBtn = document.getElementById('download-btn');
+
+        generateBtn.addEventListener('click', () => {
+            // Get current active tab
+            const activeTab = document.querySelector('.tab-button.active').id.replace('tab-', '');
+            let inputValue = '';
+            
+            // Get input value based on active tab
+            switch(activeTab) {
+                case 'youtube':
+                    inputValue = document.getElementById('youtube-url').value.trim();
+                    break;
+                case 'text':
+                    inputValue = document.getElementById('text-content').value.trim();
+                    break;
+                case 'url':
+                    inputValue = document.getElementById('web-url').value.trim();
+                    break;
+            }
+
+            // Validate input
+            if (!inputValue) {
+                showError('Please enter content to summarize');
+                return;
+            }
+
+            // Validate URLs
+            if ((activeTab === 'youtube' || activeTab === 'url') && !isValidUrl(inputValue)) {
+                showError('Please enter a valid URL');
+                return;
+            }
+
+            // Show loading state
+            hideAllStates();
+            loadingState.classList.remove('hidden');
+            generateBtn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                const format = document.getElementById('summary-format').value;
+                const length = document.getElementById('summary-length').value;
+                
+                generateSummary(inputValue, activeTab, format, length);
+            }, 3000);
+        });
+
+        function generateSummary(input, type, format, length) {
+            let summary = '';
+            const now = new Date();
+            const timestamp = now.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+
+            if (format === 'bullets') {
+                summary = `
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>This is a demonstration of Summafy's AI-powered summarization for ${type} content</li>
+                        <li>The AI has analyzed your ${type === 'youtube' ? 'video' : type === 'url' ? 'webpage' : 'text'} content and extracted key insights</li>
+                        <li>Summary length is set to ${length}, providing ${length === 'short' ? 'concise' : length === 'medium' ? 'balanced' : 'comprehensive'} coverage</li>
+                        <li>Key topics and main arguments have been identified and structured</li>
+                        <li>This summary can be copied to clipboard or downloaded as a PDF for future reference</li>
+                        ${length === 'long' ? '<li>Additional context and supporting details are included for comprehensive understanding</li>' : ''}
+                    </ul>
+                `;
+            } else {
+                summary = `
+                    <p class="mb-4">This is a demonstration of Summafy's AI-powered summarization capabilities for ${type} content. The AI has successfully analyzed your ${type === 'youtube' ? 'video' : type === 'url' ? 'webpage' : 'text'} content and extracted the most important insights and key points.</p>
+                    <p class="mb-4">The summary length is configured to ${length}, providing ${length === 'short' ? 'a concise overview' : length === 'medium' ? 'a balanced analysis' : 'comprehensive coverage'} of the main topics and arguments presented in the original content.</p>
+                    <p>This generated summary can be easily copied to your clipboard or downloaded as a PDF file for future reference and sharing with colleagues or for personal study purposes.</p>
+                    ${length === 'long' ? '<p class="mt-4">Additional context and supporting details have been included to provide a more comprehensive understanding of the subject matter, ensuring you have all the necessary information for informed decision-making.</p>' : ''}
+                `;
+            }
+
+            summaryContent.innerHTML = summary;
+            summaryTimestamp.textContent = `Generated on ${timestamp}`;
+            
+            hideAllStates();
+            resultsSection.classList.remove('hidden');
+            generateBtn.disabled = false;
+        }
+
+        function showError(message) {
+            document.getElementById('error-message').textContent = message;
+            hideAllStates();
+            errorState.classList.remove('hidden');
+            generateBtn.disabled = false;
+        }
+
+        function hideAllStates() {
+            loadingState.classList.add('hidden');
+            resultsSection.classList.add('hidden');
+            errorState.classList.add('hidden');
+        }
+
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        // Copy functionality
+        copyBtn.addEventListener('click', () => {
+            const text = summaryContent.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = `
+                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Copied!
+                `;
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                }, 2000);
+            });
+        });
+
+        // Download functionality
+        downloadBtn.addEventListener('click', () => {
+            // Simulate PDF download
+            const link = document.createElement('a');
+            link.href = '#';
+            link.download = `summary-${Date.now()}.pdf`;
+            
+            // Show feedback
+            const originalText = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = `
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                Downloaded!
+            `;
+            setTimeout(() => {
+                downloadBtn.innerHTML = originalText;
+            }, 2000);
+        });
+
+        // Auto-resize textarea
+        const textArea = document.getElementById('text-content');
+        textArea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary History - Summafy</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fsummafy4779back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
+  <script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-background text-text-primary">
+    <!-- Navigation Header -->
+    <nav class="bg-white border-b border-secondary-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="dashboard.html" class="flex items-center">
+                        <svg class="w-8 h-8 text-primary mr-3" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L4 8v16l12 6 12-6V8L16 2zm0 4l8 4v12l-8 4-8-4V10l8-4z"/>
+                            <circle cx="16" cy="16" r="4"/>
+                        </svg>
+                        <span class="text-2xl font-bold text-text-primary">Summafy</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.html" class="text-text-secondary hover:text-primary transition-colors duration-200">Dashboard</a>
+                    <a href="summary_history.html" class="text-primary font-medium">History</a>
+                    <a href="account_settings.html" class="text-text-secondary hover:text-primary transition-colors duration-200">Settings</a>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                            <span class="text-primary font-medium text-sm">JD</span>
+                        </div>
+                        <span class="text-text-primary font-medium">John Doe</span>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-text-secondary hover:text-primary p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="dashboard.html" class="text-text-secondary hover:text-primary transition-colors duration-200">Dashboard</a>
+                    <a href="summary_history.html" class="text-primary font-medium">History</a>
+                    <a href="account_settings.html" class="text-text-secondary hover:text-primary transition-colors duration-200">Settings</a>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-secondary-200">
+                        <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                            <span class="text-primary font-medium text-sm">JD</span>
+                        </div>
+                        <span class="text-text-primary font-medium">John Doe</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-text-primary mb-2">Summary History</h1>
+            <p class="text-text-secondary">Manage and organize all your AI-generated summaries</p>
+        </div>
+
+        <!-- Search and Filter Controls -->
+        <div class="card p-6 mb-8">
+            <div class="flex flex-col lg:flex-row gap-4 mb-6">
+                <!-- Search Bar -->
+                <div class="flex-1">
+                    <div class="relative">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <input type="text" 
+                               id="search-input" 
+                               placeholder="Search summaries..." 
+                               class="input-field pl-10">
+                    </div>
+                </div>
+                
+                <!-- Filter Controls -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <!-- Content Type Filter -->
+                    <select id="content-type-filter" class="input-field min-w-40">
+                        <option value="">All Content Types</option>
+                        <option value="youtube">YouTube Videos</option>
+                        <option value="text">Text Content</option>
+                        <option value="web">Web Articles</option>
+                    </select>
+                    
+                    <!-- Date Range Filter -->
+                    <select id="date-filter" class="input-field min-w-40">
+                        <option value="">All Time</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                        <option value="custom">Custom Range</option>
+                    </select>
+                    
+                    <!-- Sort Options -->
+                    <select id="sort-filter" class="input-field min-w-40">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="type">By Content Type</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Bulk Actions -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <label class="flex items-center">
+                        <input type="checkbox" id="select-all" class="rounded border-secondary-300 text-primary focus:ring-primary">
+                        <span class="ml-2 text-sm text-text-secondary">Select All</span>
+                    </label>
+                    <div id="bulk-actions" class="hidden flex items-center gap-2">
+                        <span class="text-sm text-text-secondary" id="selected-count">0 selected</span>
+                        <button id="bulk-delete-btn" class="btn-secondary text-sm px-3 py-1">Delete Selected</button>
+                        <button id="bulk-export-btn" class="btn-secondary text-sm px-3 py-1">Export Selected</button>
+                    </div>
+                </div>
+                
+                <!-- Results Count -->
+                <div class="text-sm text-text-secondary">
+                    <span id="results-count">24 summaries found</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary History Grid -->
+        <div id="history-grid" class="grid gap-6 mb-8">
+            <!-- History Card 1 - YouTube Video -->
+            <div class="card p-6 history-card" data-type="youtube" data-date="2025-11-01">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" class="history-checkbox rounded border-secondary-300 text-primary focus:ring-primary">
+                        <div class="w-10 h-10 bg-error-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-text-primary mb-1">How AI is Transforming Content Creation</h3>
+                            <p class="text-sm text-text-secondary">YouTube Video • 15 min watch</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-text-secondary">Nov 1, 2025</span>
+                        <div class="relative">
+                            <button class="history-menu-btn p-1 text-secondary-400 hover:text-text-primary">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <p class="text-text-secondary text-sm line-clamp-3">
+                        This comprehensive video explores how artificial intelligence is revolutionizing content creation across multiple industries. Key insights include the impact of AI tools on productivity, creative workflows, and the future of digital content production...
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-4 text-xs text-text-secondary">
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            2:34 PM
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Bullet Points
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path>
+                            </svg>
+                            Medium
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center gap-2">
+                        <button class="btn-secondary text-sm px-3 py-1 view-summary-btn">View Full</button>
+                        <button class="btn-secondary text-sm px-3 py-1">Re-summarize</button>
+                        <button class="btn-secondary text-sm px-3 py-1">Copy</button>
+                        <button class="btn-secondary text-sm px-3 py-1">Download</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Card 2 - Web Article -->
+            <div class="card p-6 history-card" data-type="web" data-date="2025-10-31">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" class="history-checkbox rounded border-secondary-300 text-primary focus:ring-primary">
+                        <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-text-primary mb-1">The Future of Remote Work: Trends and Predictions</h3>
+                            <p class="text-sm text-text-secondary">Web Article • techcrunch.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-text-secondary">Oct 31, 2025</span>
+                        <div class="relative">
+                            <button class="history-menu-btn p-1 text-secondary-400 hover:text-text-primary">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <p class="text-text-secondary text-sm line-clamp-3">
+                        An in-depth analysis of remote work trends post-2025, examining how companies are adapting to hybrid models, the role of AI in remote collaboration, and predictions for the future workplace landscape...
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-4 text-xs text-text-secondary">
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            9:15 AM
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                            </svg>
+                            Paragraph
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path>
+                            </svg>
+                            Long
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center gap-2">
+                        <button class="btn-secondary text-sm px-3 py-1 view-summary-btn">View Full</button>
+                        <button class="btn-secondary text-sm px-3 py-1">Re-summarize</button>
+                        <button class="btn-secondary text-sm px-3 py-1">Copy</button>
+                        <button class="btn-secondary text-sm px-3 py-1">Download</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Card 3 - Text Content -->
+            <div class="card p-6 history-card" data-type="text" data-date="2025-10-30">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" class="history-checkbox rounded border-secondary-300 text-primary focus:ring-primary">
+                        <div class="w-10 h-10 bg-accent-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-text-primary mb-1">Research Paper: Machine Learning Applications</h3>
+                            <p class="text-sm text-text-secondary">Text Content • 2,847 words</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-text-secondary">Oct 30, 2025</span>
+                        <div class="relative">
+                            <button class="history-menu-btn p-1 text-secondary-400 hover:text-text-primary">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <p class="text-text-secondary text-sm line-clamp-3">
+                        A comprehensive research paper examining practical applications of machine learning across various industries, including healthcare, finance, and autonomous systems. The study presents case studies and performance metrics...
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-4 text-xs text-text-secondary">
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            4:22 PM
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Bullet Points
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path>
+                            </svg>
+                            Short
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center gap-2">
+                        <button class="btn-secondary text-sm px-3 py-1 view-summary-btn">View Full</button>
+                        <button class="btn-secondary text-sm px-3 py-1">Re-summarize</button>
+                        <button class="btn-secondary text-sm px-3 py-1">Copy</button>
+                        <button class="btn-secondary text-sm px-3 py-1">Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-between">
+            <div class="text-sm text-text-secondary">
+                Showing 1-3 of 24 summaries
+            </div>
+            <div class="flex items-center gap-2">
+                <button class="btn-secondary px-3 py-2 disabled:opacity-50" disabled>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button class="btn-primary px-3 py-2">1</button>
+                <button class="btn-secondary px-3 py-2">2</button>
+                <button class="btn-secondary px-3 py-2">3</button>
+                <span class="px-2 text-text-secondary">...</span>
+                <button class="btn-secondary px-3 py-2">8</button>
+                <button class="btn-secondary px-3 py-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Summary Detail Modal -->
+    <div id="summary-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div class="flex items-center justify-between p-6 border-b border-secondary-200">
+                <h2 class="text-xl font-semibold text-text-primary">Summary Details</h2>
+                <button id="close-modal" class="text-secondary-400 hover:text-text-primary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+                <div class="mb-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-error-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-error" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-text-primary">How AI is Transforming Content Creation</h3>
+                            <p class="text-text-secondary">YouTube Video • Created Nov 1, 2025 at 2:34 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-secondary-50 rounded-lg p-4 mb-6">
+                        <h4 class="font-medium text-text-primary mb-3">Original Source</h4>
+                        <a href="javascript:void(0)" class="text-primary hover:underline break-all">
+                            https://www.youtube.com/watch?v=example123
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-medium text-text-primary mb-3">Generated Summary</h4>
+                    <div class="prose max-w-none">
+                        <ul class="list-disc list-inside space-y-2 text-text-secondary">
+                            <li>Artificial intelligence is revolutionizing content creation across multiple industries, from automated writing tools to AI-generated imagery and video production.</li>
+                            <li>Content creators are leveraging AI to enhance productivity, with tools that can generate ideas, optimize headlines, and even create entire articles or scripts.</li>
+                            <li>The integration of AI in creative workflows is enabling faster iteration and experimentation, allowing creators to focus more on strategy and creative direction.</li>
+                            <li>Machine learning algorithms are becoming increasingly sophisticated at understanding context, tone, and audience preferences to create more targeted content.</li>
+                            <li>While AI tools offer significant advantages, the importance of human creativity, emotional intelligence, and authentic storytelling remains crucial for meaningful content.</li>
+                            <li>The future of content creation will likely involve collaborative partnerships between human creators and AI systems, combining efficiency with creativity.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap gap-4 pt-6 border-t border-secondary-200">
+                    <button class="btn-primary px-6 py-2">Copy Summary</button>
+                    <button class="btn-secondary px-6 py-2">Download PDF</button>
+                    <button class="btn-secondary px-6 py-2">Re-summarize</button>
+                    <button class="btn-secondary px-6 py-2 text-error-600 hover:bg-error-50">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6">
+            <div class="text-center">
+                <div class="w-12 h-12 bg-error-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-text-primary mb-2">Delete Summary</h3>
+                <p class="text-text-secondary mb-6">Are you sure you want to delete this summary? This action cannot be undone.</p>
+                <div class="flex gap-3 justify-center">
+                    <button id="cancel-delete" class="btn-secondary px-6 py-2">Cancel</button>
+                    <button id="confirm-delete" class="btn-primary bg-error hover:bg-error-600 px-6 py-2">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Search and filter functionality
+        const searchInput = document.getElementById('search-input');
+        const contentTypeFilter = document.getElementById('content-type-filter');
+        const dateFilter = document.getElementById('date-filter');
+        const sortFilter = document.getElementById('sort-filter');
+        const historyCards = document.querySelectorAll('.history-card');
+        const resultsCount = document.getElementById('results-count');
+
+        function filterAndSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const contentType = contentTypeFilter.value;
+            const dateRange = dateFilter.value;
+            const sortBy = sortFilter.value;
+            
+            let visibleCards = 0;
+            
+            historyCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const summary = card.querySelector('p').textContent.toLowerCase();
+                const cardType = card.dataset.type;
+                const cardDate = card.dataset.date;
+                
+                let shouldShow = true;
+                
+                // Search filter
+                if (searchTerm && !title.includes(searchTerm) && !summary.includes(searchTerm)) {
+                    shouldShow = false;
+                }
+                
+                // Content type filter
+                if (contentType && cardType !== contentType) {
+                    shouldShow = false;
+                }
+                
+                // Date filter (simplified)
+                if (dateRange === 'today' && cardDate !== '2025-11-01') {
+                    shouldShow = false;
+                }
+                
+                if (shouldShow) {
+                    card.style.display = 'block';
+                    visibleCards++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            resultsCount.textContent = `${visibleCards} summaries found`;
+        }
+
+        searchInput.addEventListener('input', filterAndSearch);
+        contentTypeFilter.addEventListener('change', filterAndSearch);
+        dateFilter.addEventListener('change', filterAndSearch);
+        sortFilter.addEventListener('change', filterAndSearch);
+
+        // Bulk selection functionality
+        const selectAllCheckbox = document.getElementById('select-all');
+        const historyCheckboxes = document.querySelectorAll('.history-checkbox');
+        const bulkActions = document.getElementById('bulk-actions');
+        const selectedCount = document.getElementById('selected-count');
+
+        function updateBulkActions() {
+            const checkedBoxes = document.querySelectorAll('.history-checkbox:checked');
+            const count = checkedBoxes.length;
+            
+            if (count > 0) {
+                bulkActions.classList.remove('hidden');
+                selectedCount.textContent = `${count} selected`;
+            } else {
+                bulkActions.classList.add('hidden');
+            }
+            
+            selectAllCheckbox.checked = count === historyCheckboxes.length;
+            selectAllCheckbox.indeterminate = count > 0 && count < historyCheckboxes.length;
+        }
+
+        selectAllCheckbox.addEventListener('change', () => {
+            historyCheckboxes.forEach(checkbox => {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+            updateBulkActions();
+        });
+
+        historyCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateBulkActions);
+        });
+
+        // Modal functionality
+        const summaryModal = document.getElementById('summary-modal');
+        const deleteModal = document.getElementById('delete-modal');
+        const closeModal = document.getElementById('close-modal');
+        const viewSummaryBtns = document.querySelectorAll('.view-summary-btn');
+        const cancelDelete = document.getElementById('cancel-delete');
+        const confirmDelete = document.getElementById('confirm-delete');
+
+        viewSummaryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                summaryModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            summaryModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside
+        summaryModal.addEventListener('click', (e) => {
+            if (e.target === summaryModal) {
+                summaryModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Delete confirmation
+        document.addEventListener('click', (e) => {
+            if (e.target.textContent === 'Delete' && e.target.classList.contains('btn-secondary')) {
+                deleteModal.classList.remove('hidden');
+            }
+        });
+
+        cancelDelete.addEventListener('click', () => {
+            deleteModal.classList.add('hidden');
+        });
+
+        confirmDelete.addEventListener('click', () => {
+            deleteModal.classList.add('hidden');
+            // Here you would implement the actual delete functionality
+            alert('Summary deleted successfully!');
+        });
+
+        // Bulk delete functionality
+        document.getElementById('bulk-delete-btn').addEventListener('click', () => {
+            const checkedBoxes = document.querySelectorAll('.history-checkbox:checked');
+            if (checkedBoxes.length > 0) {
+                deleteModal.classList.remove('hidden');
+            }
+        });
+
+        // Export functionality
+        document.getElementById('bulk-export-btn').addEventListener('click', () => {
+            const checkedBoxes = document.querySelectorAll('.history-checkbox:checked');
+            if (checkedBoxes.length > 0) {
+                alert(`Exporting ${checkedBoxes.length} summaries...`);
+            }
+        });
+
+        // Copy functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.textContent === 'Copy') {
+                navigator.clipboard.writeText('Summary content copied to clipboard!').then(() => {
+                    const originalText = e.target.textContent;
+                    e.target.textContent = 'Copied!';
+                    setTimeout(() => {
+                        e.target.textContent = originalText;
+                    }, 2000);
+                });
+            }
+        });
+
+        // Download functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.textContent === 'Download' || e.target.textContent === 'Download PDF') {
+                alert('PDF download started!');
+            }
+        });
+
+        // Re-summarize functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.textContent === 'Re-summarize') {
+                alert('Redirecting to dashboard for re-summarization...');
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
